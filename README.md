@@ -29,5 +29,5 @@ TaskPilot is a full-stack task management app built with **Laravel (API)**, **Vu
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/mageta17/taskpilot.git
+git clone https://github.com/mageta/taskpilot.git
 cd taskpilot
