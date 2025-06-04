@@ -42,7 +42,6 @@ services:
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./frontend/taskpilot/dist:/usr/share/nginx/html
       - ./backend:/var/www
     depends_on:
       - backend
