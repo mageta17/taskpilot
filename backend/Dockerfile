@@ -2,13 +2,18 @@ FROM php:8.2-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    zip unzip curl libpng-dev libonig-dev libxml2-dev \
-    libzip-dev git mariadb-client && \
+    git curl zip unzip libonig-dev libxml2-dev \
+    libzip-dev zip && \
     docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www
+# Set working directory
+WORKDIR /var/www/taskpilot
 
-# Copy Laravel files (handled by volume bind in docker-compose)
+# Expose port for Laravel dev server
+EXPOSE 9000
+
+# Start Laravel dev server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9000"]

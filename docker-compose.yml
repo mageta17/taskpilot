@@ -1,13 +1,13 @@
 services:
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     image: taskpilot-backend
     container_name: taskpilot-backend
     restart: unless-stopped
     ports:
-      - 8000:8000
+      - 9000:9000
     volumes:
       - ./backend:/var/www
     depends_on:
@@ -62,7 +62,20 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - dbdata:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - taskpilot_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: taskpilot-phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: taskpilot
     networks:
       - taskpilot_network
 
