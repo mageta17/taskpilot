@@ -17,7 +17,14 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // 👈 This is the important line
-    port: 5173
+    host: true, // Required for Docker
+    port: 5173,
+    watch: {
+      usePolling: true // Required for reliable hot reload in Docker
+    },
+    hmr: {
+      host: 'localhost', // or your actual dev machine IP
+      port: 5173
+    }
   }
 })
