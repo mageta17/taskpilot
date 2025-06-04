@@ -1,10 +1,13 @@
 {
   "name": "TaskPilot Frontend",
-  "context": "..",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "taskpilot-frontend",
   "workspaceFolder": "/app",
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      }
+    }
   }
 }
