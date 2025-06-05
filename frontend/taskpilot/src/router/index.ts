@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue'
 import Register from '@/views/auth/Register.vue'
 import Dashboard from '@/views/auth/Dashboard.vue'
@@ -28,6 +28,6 @@ const router = createRouter({
       component: Dashboard,
     },
   ],
-})
+});
 
 export default router

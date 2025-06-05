@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main>
-    <h2>Hello</h2>
-  </main>
+  <div class="p-10 bg-green-500 text-white text-center">
+    Tailwind CSS is working! 🎉
+  </div>
 </template>

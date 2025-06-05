@@ -7,6 +7,7 @@ WORKDIR /app
 
 # Install dependencies separately for Docker caching
 COPY frontend/taskpilot/package*.json ./
+
 RUN npm install
 
 # Copy the rest of your frontend code
