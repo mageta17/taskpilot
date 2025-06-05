@@ -1,8 +1,9 @@
-<script setup lang="ts">
+<script setup>
+import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
-  <div class="p-10 bg-green-500 text-white text-center">
-    Tailwind CSS is working! 🎉
-  </div>
+  <main>
+    <TheWelcome />
+  </main>
 </template>
