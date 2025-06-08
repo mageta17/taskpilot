@@ -6,7 +6,7 @@ TaskPilot is a full-stack task management app built with **Laravel (API)**, **Vu
 
 ## ⚙️ Tech Stack
 
-- 🧠 **Backend:** Laravel 10, PHP 8.2, MySQL
+- 🧠 **Backend:** Laravel 12, PHP 8.2, MySQL
 - 🎨 **Frontend:** Vue 3, Vite, Axios, Vue Router
 - 🐳 **DevOps:** Docker, Docker Compose
 - 🔐 **Auth:** Laravel Sanctum
