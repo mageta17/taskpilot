@@ -1,6 +1,9 @@
 <template>
     <div>               
-        <form class="max-w-sm mx-auto">
+        <form 
+            @submit.prevent="register(form)"
+            class="max-w-sm mx-auto"
+        >
             <h1 class="text-3xl text-slate-200 my-4">Register</h1>
             <div class="mb-5">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
@@ -24,7 +27,8 @@
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                 <input 
                     v-model="form.password"
-                    type="password" id="password" 
+                    type="password" 
+                    id="password" 
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
             </div>
@@ -32,7 +36,7 @@
                 <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password confirmation</label>
                 <input 
                     v-model="form.password_confirmation"
-                    type="password_confirmation" 
+                    type="password" 
                     id="password_confirmation" 
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
@@ -42,8 +46,8 @@
     </div>
 </template>
 
-<script setup>
-import axiosInstance from '@/lib/axios';
+<script setup lang="ts">
+import axiosInstance from '../lib/axios';
 import { reactive } from 'vue';
 
 interface RegisterForm {
@@ -60,27 +64,17 @@ const form = reactive<RegisterForm>({
     password_confirmation: ''
 });
 
-const register = async () => {
+const register = async (payload: RegisterForm) => {
     console.log('Register function called');
     await axiosInstance.get('/sanctum/csrf-cookie', {
         baseURL: "http://localhost:9000"
     });
     
     try {
-        const response = await axiosInstance.post('/register', {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            password: formData.get('password'),
-            password_confirmation: formData.get('password_confirmation')
-        });
+        const response = await axiosInstance.post('/register', payload);
         console.log(response.data);
-        // Handle successful registration (e.g., redirect to login)
     } catch (error) {
         console.error(error);
-        // Handle error (e.g., show error message)
     }
 };
-
-register();
-
 </script>
