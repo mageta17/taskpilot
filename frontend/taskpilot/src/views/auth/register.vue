@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import axiosInstance from '../lib/axios';
+import axiosInstance from '../../lib/axios';
 import { reactive } from 'vue';
 
 interface RegisterForm {
@@ -64,17 +64,23 @@ const form = reactive<RegisterForm>({
     password_confirmation: ''
 });
 
+const errors = reactive({
+    name: [],
+    email: [],
+    password: []
+});
+
 const register = async (payload: RegisterForm) => {
-    console.log('Register function called');
     await axiosInstance.get('/sanctum/csrf-cookie', {
         baseURL: "http://localhost:9000"
     });
     
     try {
-        const response = await axiosInstance.post('/register', payload);
-        console.log(response.data);
-    } catch (error) {
-        console.error(error);
+        await axiosInstance.post('/register', payload);
+    } catch (e) {
+        // errors.name = e.response.data.errors.name;
+        // errors.email = e.response.data.errors.email;
+        // errors.password = e.response.data.errors.password
     }
 };
 </script>
